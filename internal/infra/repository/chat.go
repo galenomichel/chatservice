@@ -39,7 +39,7 @@ func (r *ChatRepositoryMySQL) CreateChat(ctx context.Context, chat *entity.Chat)
 			Stop:             chat.Config.Stop[0],
 			MaxTokens:        int32(chat.Config.MaxTokens),
 			PresencePenalty:  float64(chat.Config.PresencePenalty),
-			FrequencyPenalty: float64(chat.Config.FrequencyPenalty),
+			FrequencyPenalty: float64(chat.Config.FrequencePenalty),
 			CreatedAt:        time.Now(),
 			UpdatedAt:        time.Now(),
 		},
@@ -87,7 +87,7 @@ func (r *ChatRepositoryMySQL) FindChatByID(ctx context.Context, chatID string) (
 		Stop:             []string{res.Stop},
 		MaxTokens:        int(res.MaxTokens),
 		PresencePenalty:  float32(res.PresencePenalty),
-		FrequencyPenalty: float32(res.FrequencyPenalty),
+		FrequencePenalty: float32(res.FrequencyPenalty),
 	}
 
 	messages, err := r.Queries.FindMessagesByChatID(ctx, chatID)
@@ -137,7 +137,7 @@ func (r *ChatRepositoryMySQL) SaveChat(ctx context.Context, chat *entity.Chat) e
 		Stop:             chat.Config.Stop[0],
 		MaxTokens:        int32(chat.Config.MaxTokens),
 		PresencePenalty:  float64(chat.Config.PresencePenalty),
-		FrequencyPenalty: float64(chat.Config.FrequencyPenalty),
+		FrequencyPenalty: float64(chat.Config.FrequencePenalty),
 		UpdatedAt:        time.Now(),
 	}
 
