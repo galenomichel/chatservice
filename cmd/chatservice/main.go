@@ -27,7 +27,6 @@ func main() {
 		panic(err)
 	}
 	defer conn.Close()
-
 	repo := repository.NewChatRepositoryMySQL(conn)
 	client := openai.NewClient(configs.OpenAIApiKey)
 
@@ -67,7 +66,7 @@ func main() {
 		streamChannel,
 	)
 	go grpcServer.Start()
-
+	
 	webserver := webserver.NewWebServer(":" + configs.WebServerPort)
 	webserverChatHandler := web.NewWebChatGPTHandler(*usecase, chatConfig, configs.AuthToken)
 	webserver.AddHandler("/chat", webserverChatHandler.Handle)
